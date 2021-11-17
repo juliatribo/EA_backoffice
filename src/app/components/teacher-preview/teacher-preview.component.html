@@ -13,6 +13,13 @@
                 <div class="form-group p-1">
                     <input type="text" class="form-control" placeholder="Name" [value]="teacher.name" required #name>
                 </div>
+                <div *ngFor="let teacher_subject of teacher.subjects">
+                    <div *ngFor="let Subject of subjects">
+                        <div class="form-group p-1" *ngIf="teacher_subject ==Subject._id">
+                            {{Subject.name}}
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group p-1" *ngFor="let Subject of subjects">
                     <input type="checkbox" name="{{Subject.name}}" (change)="onchange(Subject._id)" > 
                     <label class="p-3">{{Subject.name}}</label>
@@ -33,7 +40,7 @@
                 </div>
             </form>
             <div class="d-grid gap-2 p-4" >
-                <button class="btn btn-danger btn-block">
+                <button class="btn btn-danger btn-block" (click)=deleteTeacher()>
                     Delete
                 </button>
             </div>
