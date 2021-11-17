@@ -1,0 +1,44 @@
+<div class="row" *ngIf="!teacher; else main_content">
+    <h1>Loading...</h1>
+</div>
+<ng-template #main_content>
+<div class="row">
+    <div>
+        <div class="col-lg-4 mx-auto">
+            <div class="card">
+            <div class="card-header">
+                Teacher
+            </div>
+            <form class="card-body" (submit)="updateTeacher(name,email,office,punct)">
+                <div class="form-group p-1">
+                    <input type="text" class="form-control" placeholder="Name" [value]="teacher.name" required #name>
+                </div>
+                <div class="form-group p-1" *ngFor="let Subject of subjects">
+                    <input type="checkbox" name="{{Subject.name}}" (change)="onchange(Subject._id)" > 
+                    <label class="p-3">{{Subject.name}}</label>
+                </div>
+                <div class="form-group p-1">
+                    <input type="text" class="form-control" placeholder="email" [value]="teacher.email" required #email>
+                </div>
+                <div class="form-group p-1">
+                    <input type="text" class="form-control" placeholder="office" [value]="teacher.office" required #office>
+                </div>
+                <div class="form-group p-1">
+                    <input type="number" class="form-control" placeholder="punctuation" [value]="teacher.puntuation" required #punct>
+                </div>
+                <div class="d-grid gap-2 p-1">
+                    <button class="btn btn-primary btn-block ">
+                        Update
+                    </button>
+                </div>
+            </form>
+            <div class="d-grid gap-2 p-4" >
+                <button class="btn btn-danger btn-block">
+                    Delete
+                </button>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+</ng-template>
